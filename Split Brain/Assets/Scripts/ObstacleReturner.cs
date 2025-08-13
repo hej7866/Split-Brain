@@ -24,7 +24,7 @@ public class ObstacleReturner : MonoBehaviour
             if (spawner != null)
             {
                 spawner.Return(gameObject);
-                Debug.Log("게임 종료");
+                GameManager.Instance.GameOver();
             }
             else
             {

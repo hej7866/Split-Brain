@@ -5,4 +5,5 @@ using UnityEngine;
 public class UIManager : SingleTon<UIManager>
 {
     public GameObject gameStart_UI;
+    public GameObject gameOver_UI;
 }
