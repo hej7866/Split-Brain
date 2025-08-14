@@ -392,6 +392,7 @@
 -analyzer:"D:/Unity/2022.3.14f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/LController.cs"
 "Assets/Scripts/Manager/GameManager.cs"
+"Assets/Scripts/Manager/ScoreManager.cs"
 "Assets/Scripts/Manager/TouchManager.cs"
 "Assets/Scripts/Manager/UIManager.cs"
 "Assets/Scripts/ObstacleReturner.cs"

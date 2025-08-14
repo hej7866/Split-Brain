@@ -123,23 +123,16 @@ public class ObstacleSpawner : SingleTon<ObstacleSpawner>
         if (pool.Count > 0)
         {
             var g = pool.Dequeue();
-            if (g.activeSelf)
-            {
-                var ng = Instantiate(obstaclePrefab);
-                ng.SetActive(false);
-                return ng;
-            }
             return g;
         }
         return Instantiate(obstaclePrefab);
     }
 
-
     public void Return(GameObject go)
     {
         if (!go) return;
 
-        if (active.Remove(go)) // ★ 활성에 있었던 것만 처리
+        if (active.Remove(go)) // 활성에 있었던 것만 처리
         {
             var rb = go.GetComponent<Rigidbody2D>();
             if (rb) rb.velocity = Vector2.zero;

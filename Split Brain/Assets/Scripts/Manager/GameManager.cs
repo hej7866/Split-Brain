@@ -45,7 +45,7 @@ public class GameManager : SingleTon<GameManager>
     {
         Debug.Log("게임 준비");
         gameState = GameState.Ready;
-        ObstacleSpawner.Instance.DespawnAll();
+        ScoreManager.Instance.Score = 0;
         UIManager.Instance.gameOver_UI.SetActive(false);
         UIManager.Instance.gameStart_UI.SetActive(true);
     }
