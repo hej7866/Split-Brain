@@ -18,8 +18,8 @@ public class ObstacleSpawner : SingleTon<ObstacleSpawner>
     [SerializeField] float maxDelay = 1.5f;
 
     [Header("Speed")]
-    [SerializeField] float baseSpeed = 5f;       // 시작 낙하 속도
-    [SerializeField] float speedPerMinute = 1f;  // 분당 추가 속도
+    [SerializeField] float baseSpeed = 100f;       // 시작 낙하 속도
+    [SerializeField] float speedPer20Sec = 20f;  // 분당 추가 속도
 
     [Header("Pooling")]
     [SerializeField] int poolSize = 32;
@@ -70,14 +70,14 @@ public class ObstacleSpawner : SingleTon<ObstacleSpawner>
     void OnDisable() => StopAllCoroutines();
 
 
-    IEnumerator SpawnLoop(Side side)
+    IEnumerator SpawnLoop(Side side)    
     {
         float startTime = Time.time;
 
         while (true)
         {
-            float t = (Time.time - startTime) / 60f; // minutes
-            float speed = baseSpeed + speedPerMinute * t;
+            float t = (Time.time - startTime) / 20f; // minutes
+            float speed = baseSpeed + speedPer20Sec * t;
 
             float x = RandomX(side);
             SpawnAt(x, speed);

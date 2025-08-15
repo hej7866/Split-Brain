@@ -38,7 +38,7 @@ public class GameManager : SingleTon<GameManager>
         Debug.Log("게임 시작");
         gameState = GameState.Playing;
         obstacleSpawner.SetActive(true);
-        UIManager.Instance.gameStart_UI.SetActive(false);
+        UIManager.Instance.OnGameUI(gameState);
     }
 
     void Ready()
@@ -46,8 +46,7 @@ public class GameManager : SingleTon<GameManager>
         Debug.Log("게임 준비");
         gameState = GameState.Ready;
         ScoreManager.Instance.Score = 0;
-        UIManager.Instance.gameOver_UI.SetActive(false);
-        UIManager.Instance.gameStart_UI.SetActive(true);
+        UIManager.Instance.OnGameUI(gameState);
     }
 
     public void GameOver()
@@ -56,6 +55,6 @@ public class GameManager : SingleTon<GameManager>
         gameState = GameState.GameOver;
         ObstacleSpawner.Instance.DespawnAll();
         obstacleSpawner.SetActive(false);
-        UIManager.Instance.gameOver_UI.SetActive(true);
+        UIManager.Instance.OnGameUI(gameState);
     }
 }
