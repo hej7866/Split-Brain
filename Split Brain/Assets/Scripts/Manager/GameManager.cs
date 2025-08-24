@@ -38,6 +38,7 @@ public class GameManager : SingleTon<GameManager>
         Debug.Log("게임 시작");
         gameState = GameState.Playing;
         obstacleSpawner.SetActive(true);
+        AudioManager.Instance.PlayBGM();
         UIManager.Instance.OnGameUI(gameState);
     }
 
@@ -55,6 +56,7 @@ public class GameManager : SingleTon<GameManager>
         gameState = GameState.GameOver;
         ObstacleSpawner.Instance.DespawnAll();
         obstacleSpawner.SetActive(false);
+        AudioManager.Instance.StopBGM();
         UIManager.Instance.OnGameUI(gameState);
     }
 }
