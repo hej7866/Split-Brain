@@ -1,4 +1,5 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : SingleTon<GameManager>
@@ -21,7 +22,7 @@ public class GameManager : SingleTon<GameManager>
                 switch (gameState)
                 {
                     case GameState.Ready:
-                        GameStart();
+                        StartCoroutine("GameStart");
                         break;
                     case GameState.GameOver:
                         Ready();
@@ -31,11 +32,11 @@ public class GameManager : SingleTon<GameManager>
         }
     }
 
-    void GameStart()
+    IEnumerator GameStart()
     {
-        if (gameState == GameState.Playing) return;
-
         Debug.Log("게임 시작");
+        yield return new WaitForSeconds(0.1f); // 바로 터치 방지를 위한 인풋딜레이
+
         gameState = GameState.Playing;
         obstacleSpawner.SetActive(true);
         AudioManager.Instance.PlayBGM();
@@ -46,6 +47,8 @@ public class GameManager : SingleTon<GameManager>
     {
         Debug.Log("게임 준비");
         gameState = GameState.Ready;
+        TouchManager.Instance.leftController.LeftResetPos();
+        TouchManager.Instance.rightController.RightResetPos();
         ScoreManager.Instance.Score = 0;
         UIManager.Instance.OnGameUI(gameState);
     }

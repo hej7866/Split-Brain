@@ -8,9 +8,16 @@ public class RController : MonoBehaviour
     float objScreenZ; // 월드<->스크린 변환용 Z(깊이)
     bool holding;
 
+    [SerializeField] float minX, maxX;
+
     void Awake()
     {
         if (!cam) cam = Camera.main;
+    }
+    
+     public void RightResetPos()
+    {
+        transform.position = new Vector3(480, -350, 0); 
     }
 
     public void OnTouch(Touch touch)
@@ -34,12 +41,12 @@ public class RController : MonoBehaviour
 
             // 화면 X 변화량을 월드 X 변화량으로 변환
             Vector3 worldAtStart = cam.ScreenToWorldPoint(new Vector3(startTouchScreenX, 0f, objScreenZ));
-            Vector3 worldAtNow   = cam.ScreenToWorldPoint(new Vector3(startTouchScreenX + deltaScreenX, 0f, objScreenZ));
+            Vector3 worldAtNow = cam.ScreenToWorldPoint(new Vector3(startTouchScreenX + deltaScreenX, 0f, objScreenZ));
             float deltaWorldX = worldAtNow.x - worldAtStart.x;
 
             // 상하(Y) 고정, X만 상대 이동
             Vector3 p = transform.position;
-            p.x = startObjWorldX + deltaWorldX;
+            p.x = Mathf.Clamp(startObjWorldX + deltaWorldX, minX, maxX);
             transform.position = p;
         }
     }

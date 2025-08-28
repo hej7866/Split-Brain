@@ -107,6 +107,7 @@ public class ObstacleSpawner : SingleTon<ObstacleSpawner>
         var p = go.transform.position;
         p.x = x; p.y = topY; p.z = spawnZ;
         go.transform.position = p;
+        Debug.Log(go.transform.position);
         go.SetActive(true);
 
         var rb = go.GetComponent<Rigidbody2D>();

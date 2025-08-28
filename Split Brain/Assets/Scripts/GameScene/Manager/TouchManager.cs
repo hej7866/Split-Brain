@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class TouchManager : MonoBehaviour
+public class TouchManager : SingleTon<TouchManager>
 {
-    [SerializeField] private LController leftController;
-    [SerializeField] private RController rightController;
+    public LController leftController;
+    public RController rightController;
 
     void Update()
     {
